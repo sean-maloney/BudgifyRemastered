@@ -28,10 +28,10 @@ public class User {
     @NotBlank(message = "Country cannot be blank")
     private String country;
 
-    @Pattern(regexp = "male" + "female", message = "Gender cannot be blank")
+    //@Pattern(regexp = "male" + "female", message = "Gender cannot be blank")
     private String gender;
 
-    @Pattern(regexp = "Student" + "Family" + "Free" + "Solo" + "Duo", message = "Gender cannot be blank")
+    //@Pattern(regexp = "Student" + "Family" + "Free" + "Solo" + "Duo", message = "Gender cannot be blank")
     private String subscriptionId;
 
 }
