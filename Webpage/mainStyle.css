@@ -69,7 +69,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #121212;
+    background-color: black;
 }
 p{
     color: #b3b3b3
@@ -107,7 +107,7 @@ nav ul li a{
     max-height: 400px;
 }
 .sub-menu{
-    background: #fff;
+    background: #fff1;
     padding: 20px;
     margin: 10px;
 }
@@ -157,4 +157,10 @@ nav ul li a{
 }
 .sub-menu-link:hover p{
     font-weight: 600;
+}
+
+#bottom-bar{
+    grid-area: now-playing-bar;
+    width: 100%;
+    z-index: var(--now-playing-bar-grid-area-z-index)
 }
