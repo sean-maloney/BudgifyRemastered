@@ -1,17 +1,24 @@
 package ie.atu.budgifyremasted;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
+    @Id
     @NotNull(message = "User Id cant be blank")
-    private int userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
     @NotBlank(message = "Username cannot be blank")
     private String username;
