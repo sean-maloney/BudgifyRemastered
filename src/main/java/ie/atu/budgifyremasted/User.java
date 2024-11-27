@@ -55,6 +55,5 @@ public class User {
     private String Date_of_birth;
 
     @Column(name= "Parental_controls")
-    @
     private String Parental_controls;
 }
