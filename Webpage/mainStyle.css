@@ -158,9 +158,3 @@ nav ul li a{
 .sub-menu-link:hover p{
     font-weight: 600;
 }
-
-#bottom-bar{
-    grid-area: now-playing-bar;
-    width: 100%;
-    z-index: var(--now-playing-bar-grid-area-z-index)
-}
