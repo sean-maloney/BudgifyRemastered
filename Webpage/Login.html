@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="LoginStyle.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img src="images/Spotify logo.png" alt="Spotify Logo">
+            </a>
+        </div>
+    </header>
+
+    <section>
+        <div class="main">
+            <h1>Log in to Budgify</h1>
+<!--
+            <div class="account-connect">
+                <a href="https://www.google.com/"><button><img src="images/Google logo.png" alt="Google">Continue with Google</button></a>
+                <a href="https://www.facebook.com/"><button><img src="images/Facebook logo.png" alt="Facebook">Continue with Facebook</button></a>
+                <a href="https://www.icloud.com/"><button><img src="images/Apple logo.png" alt="Apple">Continue with Apple</button></a>
+            </div>
+-->
+            <hr>
+
+            <form>
+                <input type="text" placeholder="Email or username">
+                <input type="password" placeholder="Password">
+
+                <div class="switch">
+                    <input type="checkbox" id="remember-me" checked>
+                    <label for="remember-me"></label>
+                    <span>Remember me</span>
+                </div>
+
+                <button class="log-in" type="button" onclick="window.location.href='BudgifyMainPage.html';">
+                    Log In
+                </button>
+                
+                
+                <a href="#">Forgot your password?</a>
+            </form>
+
+            <hr>
+
+            <div class="last">
+                <span>Don't have an account?</span>
+                <a href="Signup.html">Sign up for Spotify</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
