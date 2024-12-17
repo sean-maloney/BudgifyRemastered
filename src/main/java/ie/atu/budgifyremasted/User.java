@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.mapping.Set;
 
 @Entity
 @Data
@@ -24,6 +25,7 @@ public class User {
     private String name;
 
     @NotBlank(message = "Username cannot be blank")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "username")
     private String username;
     
@@ -50,10 +52,7 @@ public class User {
     //@Pattern(regexp = "Student" + "Family" + "Free" + "Solo" + "Duo", message = "Gender cannot be blank")
     private String subscriptionId;
 
-    @Column(name= "Date_of_birth")
-    //@Pattern(regexp = "Student" + "Family" + "Free" + "Solo" + "Duo", message = "Gender cannot be blank")
-    private String Date_of_birth;
-
     @Column(name= "Parental_controls")
     private String Parental_controls;
+
 }
