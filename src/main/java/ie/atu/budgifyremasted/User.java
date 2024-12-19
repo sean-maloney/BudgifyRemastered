@@ -36,7 +36,7 @@ public class User {
     @PositiveOrZero(message = "age must be greater or equal to 0")
     private int age;
 
-    @Size(max = 24, min = 8, message = "Password cannot be blank, more than 24 characters and less than 8 characters")
+    @Size(max = 24, min = 4, message = "Password cannot be blank, more than 24 characters and less than 8 characters")
     @Column(name= "password")
     private String password;
 

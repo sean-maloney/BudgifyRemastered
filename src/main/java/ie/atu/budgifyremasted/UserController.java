@@ -2,7 +2,6 @@ package ie.atu.budgifyremasted;
 
 import ie.atu.budgifyremasted.UserRepository;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
