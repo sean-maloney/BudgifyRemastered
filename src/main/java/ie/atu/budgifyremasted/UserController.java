@@ -34,7 +34,7 @@ public class UserController {
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
             return ResponseEntity.badRequest().body("Password is required.");
         }
-        if (user.getAge() < 0) {
+        if (user.getDate_Of_Birth() < 0) {
             return ResponseEntity.badRequest().body("Age must be a positive number.");
         }
         if (user.getCountry() == null || user.getCountry().isEmpty()) {

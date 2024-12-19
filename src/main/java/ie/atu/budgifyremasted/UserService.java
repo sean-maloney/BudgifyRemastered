@@ -1,9 +1,6 @@
 package ie.atu.budgifyremasted;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +31,7 @@ public class UserService {
     public List<User> updateUser(int user_Id, User user)
     {
         for(User u : myList){
-            if(u.getUser_Id() == user_Id){
+            if(u.getId() == user_Id){
                 myList.remove(u);
             }
         }
@@ -44,7 +41,7 @@ public class UserService {
     public  List<User> delUser(int userId)
     {
         for(User u : myList){
-            if(u.getUser_Id() == user_Id){
+            if(u.getId() == user_Id){
                 myList.remove(u);
             }
         }

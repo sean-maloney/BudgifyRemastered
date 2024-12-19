@@ -1,35 +1,57 @@
 package ie.atu.budgifyremasted;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.List;
-import org.hibernate.mapping.Set;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.HashSet;
 
 @Entity
 @Table(name= "Songs")
 public class Song {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long songId;
-    private String title;
-    private String artist;
-    private String likedSongs;
 
-    @ManyToMany(mappedBy = "likedSongs")
-    @JoinTable(
-            name = "user_liked_songs",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "song_id")
-    )
-   // private Set<Song> likedSongs = new HashSet<Song>(); // This will hold the liked songs
-    private Song userService;
+    @Column(name= "song_name")
+    private String song_name;
 
-    public Song(String title, String artist) {
-        this.title = title;
-        this.artist = artist;
+    @Column(name= "artist_id")
+    private String artist_id;
+
+    @Column(name= "liked_songs")
+    private String liked_songs;
+
+    public Song(){}
+
+    public Long getSongId() {
+        return songId;
     }
+
+    public void setSongId(Long song_id) {
+        this.songId = song_id;
+    }
+
+    public String getSong_name() {
+        return song_name;
+    }
+
+    public String getArtist_id() {
+        return artist_id;
+    }
+
+    public String getLiked_songs() {
+        return liked_songs;
+    }
+
+    public void setLiked_songs(String liked_songs) {
+        this.liked_songs = liked_songs;
+    }
+
+    public Song(Long songId, String song_name, String artist_id, String liked_songs) {
+        this.songId = songId;
+        this.song_name = song_name;
+        this.artist_id = artist_id;
+        this.liked_songs = liked_songs;
+    }
+// private Set<Song> likedSongs = new HashSet<Song>(); // This will hold the liked songs
+
 
    // public Set<Song> getLikedSongs() {
    //     return likedSongs;
@@ -38,28 +60,14 @@ public class Song {
     //public void setLikedSongs(Set<Song> LikedSongs) {
    //     this.likedSongs = likedSongs;
    // }
-
-    // Getters and Setters
-    public String getTitle() {
-        return title;
+    public void setSong_name(String songName) {
+        this.song_name = songName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setArtist_id(String artist) {
+        this.artist_id = artist;
     }
 
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    @Override
-    public String toString() {
-        return "Song{title='" + title + "', artist='" + artist + "'}";
-    }
     //@GetMapping("/{username}/liked-songs")
     //public ResponseEntity<Set<Song>> getLikedSongs(@PathVariable String username) {
     //    Set<Song> likedSongs = userService.getLikedSongs(username);
