@@ -31,7 +31,7 @@ public class UserController {
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
             return ResponseEntity.badRequest().body("Email is required.");
         }
-        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+        if (user.getPassword() == 0) {
             return ResponseEntity.badRequest().body("Password is required.");
         }
         if (user.getDate_Of_Birth() < 0) {
@@ -54,10 +54,10 @@ public class UserController {
 
     // Login endpoint
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam Long password) {
         // Retrieve the user from the database by username
         User user = userRepository.findByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword() == password){
             return ResponseEntity.ok("Login successful");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username or Password incorrect");

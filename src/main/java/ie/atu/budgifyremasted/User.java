@@ -16,7 +16,7 @@ public class User {
     @Id
     @NotNull(message = "User Id cant be blank")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "users_id")
+    @Column(name= "user_id")
     private Long id;
 
     @NotBlank(message = "name cannot be blank")
@@ -33,7 +33,7 @@ public class User {
 
     @Size(max = 24, min = 4, message = "Password cannot be blank, more than 24 characters and less than 8 characters")
     @Column(name= "password")
-    private String password;
+    private Long password;
 
     @Column(name= "country")
     @NotBlank(message = "Country cannot be blank")
