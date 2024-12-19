@@ -11,7 +11,7 @@ public class Search {
     private SongRepository songRepository;
 
     // Simple search method that uses the repository to find songs by title
-    public List<Song> Search(String searchTerm) {
-        return songRepository.findByTitleContainingIgnoreCase(searchTerm);
-    }
+    //public List<Song> Search(String searchTerm) {
+      //  return songRepository.findByTitleContainingIgnoreCase(searchTerm);
+    //}
 }

@@ -15,9 +15,9 @@ public class SearchController {
     private Search search;
 
     // Endpoint to search songs by title
-    @GetMapping("/search/songs")
-    public List<Song> searchSongsT(@RequestParam String title) {
-        return search.Search(title);
+   // @GetMapping("/search/songs")
+   // public List<Song> searchSongs(@RequestParam String title) {
+   //     return search.Search(title);
 
     }
 }

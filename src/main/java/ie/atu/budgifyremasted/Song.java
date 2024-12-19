@@ -15,6 +15,7 @@ public class Song {
     private Long songId;
     private String title;
     private String artist;
+    private String likedSongs;
 
     @ManyToMany(mappedBy = "likedSongs")
     @JoinTable(
@@ -22,7 +23,7 @@ public class Song {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "song_id")
     )
-    private Set<Song> likedSongs = new HashSet<Song>(); // This will hold the liked songs
+   // private Set<Song> likedSongs = new HashSet<Song>(); // This will hold the liked songs
     private Song userService;
 
     public Song(String title, String artist) {
@@ -30,13 +31,13 @@ public class Song {
         this.artist = artist;
     }
 
-    public Set<Song> getLikedSongs() {
-        return likedSongs;
-    }
+   // public Set<Song> getLikedSongs() {
+   //     return likedSongs;
+   // }
 
-    public void setLikedSongs(Set<Song> LikedSongs) {
-        this.likedSongs = likedSongs;
-    }
+    //public void setLikedSongs(Set<Song> LikedSongs) {
+   //     this.likedSongs = likedSongs;
+   // }
 
     // Getters and Setters
     public String getTitle() {
@@ -59,12 +60,12 @@ public class Song {
     public String toString() {
         return "Song{title='" + title + "', artist='" + artist + "'}";
     }
-    @GetMapping("/{username}/liked-songs")
-    public ResponseEntity<Set<Song>> getLikedSongs(@PathVariable String username) {
-        Set<Song> likedSongs = userService.getLikedSongs(username);
-        if (likedSongs != null && !likedSongs.isMap()) {
-            return ResponseEntity.ok(likedSongs); // Return liked songs if found
-        }
-        return ResponseEntity.notFound().build(); // Return 404 if no liked songs are found
-    }
+    //@GetMapping("/{username}/liked-songs")
+    //public ResponseEntity<Set<Song>> getLikedSongs(@PathVariable String username) {
+    //    Set<Song> likedSongs = userService.getLikedSongs(username);
+    //    if (likedSongs != null && !likedSongs.isMap()) {
+    //        return ResponseEntity.ok(likedSongs); // Return liked songs if found
+    //    }
+    //    return ResponseEntity.notFound().build(); // Return 404 if no liked songs are found
+  //  }
 }

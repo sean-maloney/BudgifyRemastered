@@ -21,16 +21,10 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    // Method to get liked songs by username
-    public Set<Song> getLikedSongs(String username) {
-        // Fetch the user by their username from the repository
-        User user = userRepository.findByUsername(username); // Get user by username
-        user.getlikedSongs().add(Song); // Add song to user's liked songs if user is found
-        if (user != null) {
-            return user.getlikedSongs(); // Return the liked songs if user is found
-        }
-        return null; // Return null if the user is not found
-    }
+
+    //public List<User> likedSongs(User user) {
+    //    return mylikedSongs;
+   // }
 
     public List<User> addUser(User user) {
         myList.add(user);

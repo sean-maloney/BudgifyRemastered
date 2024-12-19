@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SongRepository extends JpaRepository<Song, Long> {
-    List<Song> findByArtistContainingIgnoreCase(String artist);
-    List<Song> findByTitleContainingIgnoreCase(String title);
+   // List<Song> findByArtistContainingIgnoreCase(String artist);
+    //List<Song> findByTitleContainingIgnoreCase(String title);
+   // List<Song> findByTitleContainingIgnoreCase(String LikedSongs);
 }
