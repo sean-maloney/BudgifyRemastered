@@ -3,11 +3,12 @@ package ie.atu.budgifyremasted;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name= "Songs")
+@Table(name= "songs")
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long songId;
+    @Column(name = "song_id", nullable = false)
+    private Long song_id;
 
     @Column(name= "song_name")
     private String song_name;
@@ -20,12 +21,12 @@ public class Song {
 
     public Song(){}
 
-    public Long getSongId() {
-        return songId;
+    public Long getSong_id() {
+        return song_id;
     }
 
-    public void setSongId(Long song_id) {
-        this.songId = song_id;
+    public void setSong_id(Long song_id) {
+        this.song_id = song_id;
     }
 
     public String getSong_name() {
@@ -44,8 +45,8 @@ public class Song {
         this.liked_songs = liked_songs;
     }
 
-    public Song(Long songId, String song_name, String artist_id, String liked_songs) {
-        this.songId = songId;
+    public Song(Long song_id, String song_name, String artist_id, String liked_songs) {
+        this.song_id = song_id;
         this.song_name = song_name;
         this.artist_id = artist_id;
         this.liked_songs = liked_songs;
@@ -60,8 +61,8 @@ public class Song {
     //public void setLikedSongs(Set<Song> LikedSongs) {
    //     this.likedSongs = likedSongs;
    // }
-    public void setSong_name(String songName) {
-        this.song_name = songName;
+    public void setSong_name(String song_name) {
+        this.song_name = song_name;
     }
 
     public void setArtist_id(String artist) {

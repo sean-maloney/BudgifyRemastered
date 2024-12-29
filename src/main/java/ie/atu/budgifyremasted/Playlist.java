@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Playlist {
 
-    private String name;
-    private List<Song> songs;
+    private final String name;
+    private final List<Song> songs;
 
     public Playlist(String name) {
         this.name = name;
@@ -25,11 +25,4 @@ public class Playlist {
         songs.add(song);
     }
 
-    @Override
-    public String toString() {
-        return "Playlist{" +
-                "name='" + name + '\'' +
-                ", songs=" + songs +
-                '}';
-    }
 }
