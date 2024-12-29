@@ -28,20 +28,20 @@ public class UserService {
         return myList;
     }
 
-    public List<User> updateUser(int user_Id, User user)
+    public List<User> updateUser(int id, User user)
     {
         for(User u : myList){
-            if(u.getId() == user_Id){
+            if(u.getId() == id){
                 myList.remove(u);
             }
         }
         myList.add(user);
         return myList;
     }
-    public  List<User> delUser(int userId)
+    public  List<User> delUser(int id)
     {
         for(User u : myList){
-            if(u.getId() == user_Id){
+            if(u.getId() == id){
                 myList.remove(u);
             }
         }
