@@ -31,10 +31,10 @@ public class UserController {
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
             return ResponseEntity.badRequest().body("Email is required.");
         }
-        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+        if (user.getPassword() == null ) {
             return ResponseEntity.badRequest().body("Password is required.");
         }
-        if (user.getDate_Of_Birth() < 0) {
+        if (user.getDate_of_birth() < 0) {
             return ResponseEntity.badRequest().body("Age must be a positive number.");
         }
         if (user.getCountry() == null || user.getCountry().isEmpty()) {

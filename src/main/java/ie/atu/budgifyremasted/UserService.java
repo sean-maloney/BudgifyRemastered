@@ -1,6 +1,5 @@
 package ie.atu.budgifyremasted;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,7 @@ public class UserService {
     public List<User> updateUser(int id, User user)
     {
         for(User u : myList){
-            if(u.getId() == id){
+            if(u.getUser_id() == id){
                 myList.remove(u);
             }
         }
@@ -41,7 +40,7 @@ public class UserService {
     public  List<User> delUser(int id)
     {
         for(User u : myList){
-            if(u.getId() == id){
+            if(u.getUser_id() == id){
                 myList.remove(u);
             }
         }

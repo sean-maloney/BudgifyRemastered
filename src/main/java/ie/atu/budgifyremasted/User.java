@@ -10,54 +10,53 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name= "users")
+@Table(name = "users")
 public class User {
 
     @Id
-    @NotNull(message = "User Id cant be blank")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "users_id")
-    private Long id;
+    @Column(name = "user_id",  nullable = false)
+    private Long user_id;
 
-    @NotBlank(message = "name cannot be blank")
-    @Column(name= "name")
+    @NotBlank(message = "Name cannot be blank")
+    @Column(name = "name")
     private String name;
 
     @NotBlank(message = "Username cannot be blank")
-    @Column(name= "username")
+    @Column(name = "username")
     private String username;
-    
-    @Column(name= "email")
-    @Email(message = "email cant be blank")
+
+    @Email(message = "Email must be valid")
+    @Column(name = "email")
     private String email;
 
-    @Size(max = 24, min = 4, message = "Password cannot be blank, more than 24 characters and less than 8 characters")
-    @Column(name= "password")
+    @Size(min = 4, max = 24, message = "Password must be between 4 and 24 characters")
+    @Column(name = "password")
     private String password;
 
-    @Column(name= "country")
     @NotBlank(message = "Country cannot be blank")
+    @Column(name = "country")
     private String country;
 
-    @Column(name= "gender")
-    //@Pattern(regexp = "male" + "female", message = "Gender cannot be blank")
+    @Column(name = "gender")
     private String gender;
 
-    @Column(name= "subscription_id")
-    //@Pattern(regexp = "Student" + "Family" + "Free" + "Solo" + "Duo", message = "Gender cannot be blank")
-    private String subscription_id;
+    @Column(name = "subscription_id")
+    private int subscription_id;
 
-    @Column(name= "Parental_controls")
-    private String Parental_controls;
+    @Column(name = "parental_controls")
+    private String parental_controls;
 
-    @PositiveOrZero(message= "Wrong")
-    @Column(name= "Date_of_birth")
-    private int Date_Of_Birth;
+    @Positive(message = "Date of birth must be a positive number")
+    @Column(name = "date_of_birth")
+    private int date_of_birth;
 
-    @Column(name= "phone_number")
+    @Column(name = "phone_number")
     private String phone_number;
 
-    @Column(name= "marketing")
+    @Column(name = "marketing")
     private String marketing;
 
+    @Column(name = "created_date")
+    private String created_date; // Add this field to match the database schema
 }
