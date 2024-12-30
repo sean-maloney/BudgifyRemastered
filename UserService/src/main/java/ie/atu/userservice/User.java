@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
@@ -60,5 +60,13 @@ public class User {
 
     @Column(name = "created_date")
     private LocalDate created_date;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
 

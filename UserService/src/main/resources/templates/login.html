@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="LoginStyle.css">
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <a href="#">
+            <img src="images/Spotify logo.png" alt="Spotify Logo">
+        </a>
+    </div>
+</header>
+
+<section>
+    <div class="main">
+        <h1>Log in to Budgify</h1>
+        <hr>
+        <form id="loginForm">
+            <input name="username" id="username" type="text" placeholder="Username" required>
+            <input name="password" id="password" type="password" placeholder="Password" required>
+
+            <div class="switch">
+                <input type="checkbox" id="remember-me" checked>
+                <label for="remember-me"></label>
+                <span>Remember me</span>
+            </div>
+
+            <button class="log-in" type="submit">Log In</button>
+            <a href="#">Forgot your password?</a>
+        </form>
+        <hr>
+        <div class="last">
+            <span>Don't have an account?</span>
+            <a href="Signup.html">Sign up for Spotify</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            // Send the request to the backend running on port 8080
+            const response = await fetch("http://localhost:9000/api/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({ username, password }),
+            });
+
+
+            if (response.ok) {
+                // Redirect user to the URL returned by the server
+                const redirectUrl = await response.text();
+                window.location.href = redirectUrl;
+            } else if (response.status === 401) {
+                // Handle invalid credentials
+                alert("Invalid credentials. Please try again.");
+            } else {
+                // Handle other errors
+                alert("An error occurred. Please try again later.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("An error occurred. Please try again later.");
+        }
+    });
+
+</script>
+</body>
+
+</html>
