@@ -42,9 +42,9 @@ public class UserService {
     }
 
     // Authenticate user credentials
-    public boolean authenticate(String username, int password) {
+    public boolean authenticate(String username, String password) {
         User user = userRepository.findByUsername(username);
-        return user != null && user.getPassword()==(password);
+        return user != null && user.getPassword().equals(password);
     }
 
 
@@ -52,7 +52,7 @@ public class UserService {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User loginRequest) {
         String username = loginRequest.getUsername();
-        int password = loginRequest.getPassword();
+        String password = loginRequest.getPassword();
 
         if (authenticate(username, password)) {
             return ResponseEntity.ok("Login successful");
@@ -74,10 +74,10 @@ public class UserService {
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
             return ResponseEntity.badRequest().body("Email is required.");
         }
-        if (user.getPassword() == 0 || user.getPassword() < 0) {
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
             return ResponseEntity.badRequest().body("Password is required.");
         }
-        if (user.getDate_of_birth() == 0 || user.getDate_of_birth() < 0) {
+        if (user.getDate_of_birth() == null) {
             return ResponseEntity.badRequest().body("Invalid date of birth.");
         }
         if (user.getCountry() == null || user.getCountry().isEmpty()) {
