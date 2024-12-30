@@ -16,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id",  nullable = false)
-    private Long user_id;
+    private Long id;
 
     @NotBlank(message = "Name cannot be blank")
     @Column(name = "name")
@@ -52,7 +52,7 @@ public class User {
     private int date_of_birth;
 
     @Column(name = "phone_number")
-    private String phone_number;
+    private int phone_number;
 
     @Column(name = "marketing")
     private String marketing;
