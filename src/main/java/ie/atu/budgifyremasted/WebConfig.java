@@ -10,11 +10,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // Allow cross-origin requests from your frontend
-        registry.addMapping("/**")  // Apply to all endpoints
-                .allowedOrigins("http://127.0.0.1:8081")  // Allow frontend URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE")  // Allow specific HTTP methods
-                .allowedHeaders("*")  // Allow all headers
-                .allowCredentials(true);  // Allow credentials (cookies, authentication)
+        registry.addMapping("/api/**")
+                .allowedOrigins("http://127.0.0.1:8081")  // Allow requests from frontend (port 8081)
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }
