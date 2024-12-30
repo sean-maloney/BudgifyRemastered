@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDate;
+import java.time.LocalDate;  // Import LocalDate for date fields
 
 @Entity
 @Data
@@ -48,15 +48,18 @@ public class User {
     @Column(name = "parental_controls")
     private String parental_controls;
 
+    // Update to LocalDate to match the DATE type in the database
     @Column(name = "date_of_birth")
     private LocalDate date_of_birth;
 
+    // Use Long or String for phone_number (if it includes special characters or leading zeros)
     @Column(name = "phone_number")
     private String phone_number;
 
     @Column(name = "marketing")
     private String marketing;
 
+    // Update to LocalDate to match the DATE type in the database
     @Column(name = "created_date")
     private LocalDate created_date;
 }
