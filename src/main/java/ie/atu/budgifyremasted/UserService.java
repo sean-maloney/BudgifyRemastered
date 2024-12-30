@@ -30,7 +30,7 @@ public class UserService {
     public List<User> updateUser(int id, User user)
     {
         for(User u : myList){
-            if(u.getUser_id() == id){
+            if(u.getId() == id){
                 myList.remove(u);
             }
         }
@@ -40,7 +40,7 @@ public class UserService {
     public  List<User> delUser(int id)
     {
         for(User u : myList){
-            if(u.getUser_id() == id){
+            if(u.getId() == id){
                 myList.remove(u);
             }
         }
