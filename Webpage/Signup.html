@@ -21,38 +21,24 @@
     <section>
         <div class="main">
             <h1>Sign up to Budgify</h1>
-<!--
-            <div class="account-connect">
-                <a href="https://www.google.com/"><button><img src="images/Google logo.png" alt="Google">Continue with Google</button></a>
-                <a href="https://www.facebook.com/"><button><img src="images/Facebook logo.png" alt="Facebook">Continue with Facebook</button></a>
-                <a href="https://www.icloud.com/"><button><img src="images/Apple logo.png" alt="Apple">Continue with Apple</button></a>
-            </div>
--->
+
             <hr>
 
-            <form>
-                <input type="username" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <input type="email" placeholder="Email">
-                <input type="name" placeholder="Name">
-                <input type="age" placeholder="Age">
-                <input type="country" placeholder="Country">
-                <input type="gender" placeholder="Gender">
-                <input type="subscription" placeholder="Subscription">
+            <form id="signupForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="country" placeholder="Country" required>
+                <input type="text" id="gender" placeholder="Gender">
+                <input type="number" id="subscription_id" placeholder="Subscription ID" value="1" style="display:none">
+                <input type="text" id="parental_controls" placeholder="Parental Controls">
+                <input type="date" id="date_of_birth" placeholder="Date of Birth" required>
+                <input type="text" id="phone_number" placeholder="Phone Number">
 
-<!--
-                <div class="switch">
-                    <input type="checkbox" id="remember-me" checked>
-                    <label for="remember-me"></label>
-                    <span>Remember me</span>
-                </div>
--->
-                <button class="sign-up" type="button" onclick="window.location.href='Login.html';">
+                <button class="sign-up" type="submit">
                     Sign up
                 </button>
-                
-                
-                <!--<a href="#">Forgot your password?</a>-->
             </form>
 
             <hr>
@@ -63,6 +49,54 @@
             </div>
         </div>
     </section>
+
+    <script>
+       document.getElementById("signup-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get user data from the form
+    const userData = {
+        name: document.getElementById("name").value,
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        country: document.getElementById("country").value,
+        gender: document.getElementById("gender").value,
+        subscription_id: 1,  // Example, you can set it dynamically if needed
+        parental_controls: document.getElementById("parental_controls").value,
+        date_of_birth: document.getElementById("date_of_birth").value,
+        phone_number: document.getElementById("phone_number").value,
+        created_date: new Date().toISOString().slice(0, 10)  // Current date as "yyyy-mm-dd"
+    };
+
+    // Send POST request to signup API
+    fetch('http://localhost:8080/api/users/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => {
+        if (response.status === 201) {
+            alert("User registered successfully!");
+            window.location.href = "http://127.0.0.1:8081/Webpage/BudgifyMainPage.html";  // Redirect on success
+        } else {
+            return response.text();  // Get the error message
+        }
+    })
+    .then(errorMessage => {
+        if (errorMessage) {
+            alert("Error: " + errorMessage);
+        }
+    })
+    .catch(error => {
+        console.error('Error during signup:', error);
+    });
+});
+
+        </script>
+        
 
 </body>
 
