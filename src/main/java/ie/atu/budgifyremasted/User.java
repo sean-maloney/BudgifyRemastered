@@ -32,7 +32,7 @@ public class User {
 
     @Size(min = 4, max = 24, message = "Password must be between 4 and 24 characters")
     @Column(name = "password")
-    private String password;
+    private int password;
 
     @NotBlank(message = "Country cannot be blank")
     @Column(name = "country")
