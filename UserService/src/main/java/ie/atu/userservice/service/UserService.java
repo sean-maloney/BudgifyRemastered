@@ -2,6 +2,7 @@ package ie.atu.userservice.service;
 
 import ie.atu.userservice.User;
 import ie.atu.userservice.UserRepository;
+import ie.atu.userservice.client.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

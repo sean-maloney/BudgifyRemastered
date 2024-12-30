@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="SignupStyle.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img src="images/Spotify logo.png" alt="Spotify Logo">
+            </a>
+        </div>
+    </header>
+
+    <section>
+        <div class="main">
+            <h1>Sign up to Budgify</h1>
+
+            <hr>
+
+            <form id="signupForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="country" placeholder="Country" required>
+                <input type="text" id="gender" placeholder="Gender">
+                <input type="number" id="subscription_id" placeholder="Subscription ID" value="1" style="display:none">
+                <input type="text" id="parental_controls" placeholder="Parental Controls">
+                <input type="date" id="date_of_birth" placeholder="Date of Birth" required>
+                <input type="text" id="phone_number" placeholder="Phone Number">
+
+                <button class="sign-up" type="submit">
+                    Sign up
+                </button>
+            </form>
+
+            <hr>
+
+            <div class="last">
+                <span>Have an account?</span>
+                <a href="Login.html">Log in to Budgify</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            // Gather user input from the form
+            const userData = {
+                name: document.getElementById("name").value,
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                country: document.getElementById("country").value,
+                gender: document.getElementById("gender").value,
+                subscription_id: document.getElementById("subscription_id").value,
+                parental_controls: document.getElementById("parental_controls").value,
+                date_of_birth: document.getElementById("date_of_birth").value,
+                phone_number: document.getElementById("phone_number").value,
+                created_date: new Date().toISOString().slice(0, 10), // Current date
+            };
+
+            try {
+                // Send the POST request to the backend
+                const response = await fetch("http://localhost:8080/api/users/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userData),
+                });
+
+                if (response.status === 201) {
+                    // Successfully created user; redirect to login page
+                    alert("User registered successfully! Redirecting to login page.");
+                    window.location.href = "Login.html";
+                } else {
+                    // Handle errors, show response message
+                    const errorMessage = await response.text();
+                    alert("Error: " + errorMessage);
+                }
+            } catch (error) {
+                console.error("Error during signup:", error);
+                alert("An unexpected error occurred. Please try again later.");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
