@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    // Configuring CORS to allow frontend requests from a specific origin
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")

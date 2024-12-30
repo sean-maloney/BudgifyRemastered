@@ -51,52 +51,49 @@
     </section>
 
     <script>
-       document.getElementById("signup-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
+        document.getElementById("signupForm").addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent form submission
 
-    // Get user data from the form
-    const userData = {
-        name: document.getElementById("name").value,
-        username: document.getElementById("username").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-        country: document.getElementById("country").value,
-        gender: document.getElementById("gender").value,
-        subscription_id: 1,  // Example, you can set it dynamically if needed
-        parental_controls: document.getElementById("parental_controls").value,
-        date_of_birth: document.getElementById("date_of_birth").value,
-        phone_number: document.getElementById("phone_number").value,
-        created_date: new Date().toISOString().slice(0, 10)  // Current date as "yyyy-mm-dd"
-    };
+            // Gather user input from the form
+            const userData = {
+                name: document.getElementById("name").value,
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                country: document.getElementById("country").value,
+                gender: document.getElementById("gender").value,
+                subscription_id: document.getElementById("subscription_id").value,
+                parental_controls: document.getElementById("parental_controls").value,
+                date_of_birth: document.getElementById("date_of_birth").value,
+                phone_number: document.getElementById("phone_number").value,
+                created_date: new Date().toISOString().slice(0, 10), // Current date
+            };
 
-    // Send POST request to signup API
-    fetch('http://localhost:8080/api/users/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
-    .then(response => {
-        if (response.status === 201) {
-            alert("User registered successfully!");
-            window.location.href = "http://127.0.0.1:8081/Webpage/BudgifyMainPage.html";  // Redirect on success
-        } else {
-            return response.text();  // Get the error message
-        }
-    })
-    .then(errorMessage => {
-        if (errorMessage) {
-            alert("Error: " + errorMessage);
-        }
-    })
-    .catch(error => {
-        console.error('Error during signup:', error);
-    });
-});
+            try {
+                // Send the POST request to the backend
+                const response = await fetch("http://localhost:8080/api/users/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userData),
+                });
 
-        </script>
-        
+                if (response.status === 201) {
+                    // Successfully created user; redirect to login page
+                    alert("User registered successfully! Redirecting to login page.");
+                    window.location.href = "Login.html";
+                } else {
+                    // Handle errors, show response message
+                    const errorMessage = await response.text();
+                    alert("Error: " + errorMessage);
+                }
+            } catch (error) {
+                console.error("Error during signup:", error);
+                alert("An unexpected error occurred. Please try again later.");
+            }
+        });
+    </script>
 
 </body>
 
