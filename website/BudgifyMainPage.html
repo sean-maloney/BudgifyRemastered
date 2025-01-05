@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 </head>
 <body>
     <section id="main-bar">
@@ -26,6 +25,7 @@
                     <form>
                         <span class="search-icon material-symbols-outlined">search</span>
                         <input onkeyup="updateSearch()" id="search" type="search" class="search-input" placeholder="What do you want to play?">
+                        <div id="search-dropdown" class="dropdown"></div>
                     </form>
                 </div>
                 <ul>
@@ -35,7 +35,6 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
                 <img src="images/user.png" class="user-pic" onclick="toggleMenu()">
-
                 <div class="sub-menu-wrap" id="subMenu">
                     <div class="sub-menu">
                         <div class="user-info">
@@ -43,7 +42,6 @@
                             <h2>Budgify Admin</h2>
                         </div>
                         <hr>
-
                         <a href="#" class="sub-menu-link">
                             <img src="images/profile.png">
                             <p>Edit Profile</p>
@@ -121,7 +119,6 @@
                     <span>0:49</span>
                     <div class="progress-bar">
                         <div class="progress"></div>
-                        
                     </div>
                     <span>3:15</span>
                 </div>
@@ -145,20 +142,49 @@
                 subMenu.classList.toggle("open-menu");
             }
 
-            
-
             async function updateSearch() {
-                const query = document.getElementById("search").value;
+                const query = document.getElementById("search").value.trim();
+                const dropdown = document.getElementById("search-dropdown");
 
-                const response = await fetch("http://localhost:8083/api/search", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams({ query: query }),
-                });
+                if (!query) {
+                    dropdown.style.display = "none";
+                    dropdown.innerHTML = "";
+                    return;
+                }
 
-                console.log(await response.text());
+                try {
+                    const response = await fetch("http://localhost:8083/api/search", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: new URLSearchParams({ query: query }),
+                    });
+
+                    const results = await response.text();
+
+                    // Assuming backend returns a comma-separated list of song names
+                    const songs = results.split(",");
+                    dropdown.innerHTML = "";
+
+                    if (songs.length > 0) {
+                        dropdown.style.display = "block";
+                        songs.forEach((song) => {
+                            const item = document.createElement("div");
+                            item.classList.add("dropdown-item");
+                            item.textContent = song;
+                            item.onclick = function() {
+                                document.getElementById("search").value = song;
+                                dropdown.style.display = "none";
+                            };
+                            dropdown.appendChild(item);
+                        });
+                    } else {
+                        dropdown.style.display = "none";
+                    }
+                } catch (error) {
+                    console.error("Error fetching search results:", error);
+                }
             }
         </script>
     </section>

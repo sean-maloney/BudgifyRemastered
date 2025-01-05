@@ -41,7 +41,6 @@ a {
     font-weight: bold;
 }
 
-
 .menu {
     width: 65%;
     display: flex;
@@ -72,6 +71,7 @@ a {
     border-radius: 28px;
     background: #1f1f1f;
     transition: box-shadow 0.25s;
+    position: relative; /* Add positioning for dropdown */
 }
 
 .search:focus-within {
@@ -263,5 +263,42 @@ a {
 
 .sub-menu-link:hover p {
     font-weight: 600;
+}
 
+/* Updated Dropdown Styling for Vertical List */
+.dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%; /* Full width of the search bar */
+    display: none; /* Initially hidden */
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 5px; /* Space between input and dropdown */
+}
+
+/* Ensure dropdown items are displayed in a vertical list */
+.dropdown .dropdown-item {
+    display: block; /* Stack items vertically */
+    padding: 10px 15px; /* Add spacing inside each item */
+    border-bottom: 1px solid #f1f1f1; /* Separate items with a light border */
+    white-space: nowrap; /* Prevent long text from wrapping */
+    color: #333; /* Text color */
+    background-color: #fff; /* Background color */
+    font-size: 16px; /* Font size for better readability */
+}
+
+/* Remove the border for the last item in the list */
+.dropdown .dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* Add a hover effect */
+.dropdown .dropdown-item:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
 }
