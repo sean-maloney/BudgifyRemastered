@@ -265,40 +265,151 @@ a {
     font-weight: 600;
 }
 
-/* Updated Dropdown Styling for Vertical List */
-.dropdown {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    max-height: 200px;
-    overflow-y: auto;
-    width: 100%; /* Full width of the search bar */
-    display: none; /* Initially hidden */
-    z-index: 1000;
-    top: 100%;
+/* Music player styling */
+.music-player {
+    --primary-color: #ddd;
+    --secondary-color: #999;
+    --green-color: #2d5;
+    --padding: 1em;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Fixed to the viewport */
+    bottom: 0; /* Attached to the bottom */
     left: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 5px; /* Space between input and dropdown */
+    width: 100%; /* Full width */
+    height: 7rem;
+    padding: var(--padding);
+    color: var(--primary-color);
+    z-index: 10; /* Keep it above other elements */
 }
 
-/* Ensure dropdown items are displayed in a vertical list */
-.dropdown .dropdown-item {
-    display: block; /* Stack items vertically */
-    padding: 10px 15px; /* Add spacing inside each item */
-    border-bottom: 1px solid #f1f1f1; /* Separate items with a light border */
-    white-space: nowrap; /* Prevent long text from wrapping */
-    color: #333; /* Text color */
-    background-color: #fff; /* Background color */
-    font-size: 16px; /* Font size for better readability */
+i:hover {
+    color: var(--primary-color);
 }
 
-/* Remove the border for the last item in the list */
-.dropdown .dropdown-item:last-child {
-    border-bottom: none;
+.song-bar {
+    position: absolute;
+    left: var(--padding);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    width: 25%;
 }
 
-/* Add a hover effect */
-.dropdown .dropdown-item:hover {
-    background-color: #f0f0f0; /* Light grey background on hover */
+.song-infos {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.image-container {
+    --size: 4.5rem;
+    flex-shrink: 0;
+    width: var(--size);
+    height: var(--size);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-description p {
+    margin: 0.2rem;
+}
+
+.title, .artist {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.title:hover, .artist:hover {
+    text-decoration: underline;
+}
+
+.artist {
+    color: var(--secondary-color);
+}
+
+.progress-controller {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    color: var(--secondary-color);
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.play-pause {
+    display: inline;
+    padding: 1em;
+    background-color: var(--primary-color);
+    color: #111;
+    border-radius: 50%;
+}
+
+.play-pause:hover {
+    transform: scale(1.1);
+}
+
+.progress-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.progress-bar {
+    height: 4px;
+    border-radius: 10px;
+    width: 30%;
+    background-color: #ccc4;
+}
+
+.progress {
+    position: relative;
+    height: 100%;
+    width: 30%;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+
+.progress-bar:hover .progress {
+    background-color: var(--green-color);
+}
+
+.progress-bar:hover .progress::after {
+    content: "";
+    position: absolute;
+    --size: 1em;
+    width: var(--size);
+    height: var(--size);
+    right: 0;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transform: translate(50%, -50%);
+}
+
+.other-features {
+    position: absolute;
+    right: var(--padding);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
 }
