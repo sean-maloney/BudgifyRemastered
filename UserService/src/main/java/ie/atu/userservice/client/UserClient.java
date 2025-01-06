@@ -3,10 +3,7 @@ package ie.atu.userservice.client;
 import ie.atu.userservice.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 public interface UserClient {
     @PostMapping("/login")
@@ -15,4 +12,6 @@ public interface UserClient {
     ResponseEntity<String> signUp(@RequestBody User user);
     @PostMapping("/test")
     String test();
+   @DeleteMapping("/delete")
+    ResponseEntity<String> delete(@RequestParam Long id);
 }

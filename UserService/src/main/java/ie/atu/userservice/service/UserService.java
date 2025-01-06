@@ -32,4 +32,9 @@ public class UserService {
         userRepository.save(user);
         return "success";  // Return success message
     }
+
+    public String deleteUser(Long id) {
+        userRepository.deleteById(id);
+        return "User deleted successfully.";
+    }
 }

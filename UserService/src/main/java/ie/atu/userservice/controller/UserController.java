@@ -33,8 +33,20 @@ public class UserController implements UserClient {
         String result = userService.registerUser(user);
         if (result.equals("success")) {
             return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
-        } else {
+        }
+        else {
             return ResponseEntity.badRequest().body(result);  // Return the error message from UserService
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> delete(@RequestParam Long id){
+        String result = userService.deleteUser(id);
+        if (result.equals("success")) {
+            return ResponseEntity.ok().body("User was deleted successfully");
+        }
+        else {
+            return ResponseEntity.badRequest().body(result);
         }
     }
 
