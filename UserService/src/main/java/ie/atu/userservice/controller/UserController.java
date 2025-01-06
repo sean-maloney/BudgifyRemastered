@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "http://127.0.0.1:8080")
 public class UserController implements UserClient {
+
+
     @Autowired
     private UserService userService;
 
@@ -46,6 +48,16 @@ public class UserController implements UserClient {
             return ResponseEntity.ok().body("User was deleted successfully");
         }
         else {
+            return ResponseEntity.badRequest().body(result);
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> update(@RequestParam String password) {
+        String result = userService.updatePassword(password);
+        if ("success".equals(result)) {
+            return ResponseEntity.ok().body("Password was updated successfully");
+        } else {
             return ResponseEntity.badRequest().body(result);
         }
     }

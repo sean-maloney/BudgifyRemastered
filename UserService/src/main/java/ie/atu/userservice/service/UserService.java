@@ -37,4 +37,8 @@ public class UserService {
         userRepository.deleteById(id);
         return "User deleted successfully.";
     }
+
+    public String updatePassword(String password){
+        //userRepository.save(new User(password));
+    }
 }
