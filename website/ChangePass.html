@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="Pass.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img src="images/Spotify logo.png" alt="Spotify Logo">
+            </a>
+        </div>
+    </header>
+
+    <section>
+        <div class="main">
+            <h1>Change Password for this Account</h1>
+
+            <hr>
+
+            <form id="signupForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="New Password" required>
+
+                <button class="change-pass" type="submit">
+                    Change Password
+                </button>
+            </form>
+
+            <hr>
+
+            <div class="last">
+                <span>Changed your mind?</span>
+                <a href="Login.html">Log in to Budgify</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            // Gather user input from the form
+            const userData = {
+                username: document.getElementById("username").value,
+                password: document.getElementById("password").value,
+            };
+
+            try {
+                // Send the POST request to the backend
+                const response = await fetch("http://localhost:8080/api/users/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userData),
+                });
+
+                if (response.status === 201) {
+                    // Successfully created user; redirect to login page
+                    alert("User registered successfully! Redirecting to login page.");
+                    window.location.href = "Login.html";
+                } else {
+                    // Handle errors, show response message
+                    const errorMessage = await response.text();
+                    alert("Error: " + errorMessage);
+                }
+            } catch (error) {
+                console.error("Error during signup:", error);
+                alert("An unexpected error occurred. Please try again later.");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
