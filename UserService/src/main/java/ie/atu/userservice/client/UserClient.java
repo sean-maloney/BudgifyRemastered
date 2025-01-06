@@ -14,4 +14,6 @@ public interface UserClient {
     String test();
    @DeleteMapping("/delete")
     ResponseEntity<String> delete(@RequestParam Long id);
+   @PutMapping("/update")
+    ResponseEntity<String> update(@RequestParam String password );
 }
