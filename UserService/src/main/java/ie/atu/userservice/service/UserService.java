@@ -40,5 +40,6 @@ public class UserService {
 
     public String updatePassword(String password){
         //userRepository.save(new User(password));
+        return "Password updated successfully.";
     }
 }

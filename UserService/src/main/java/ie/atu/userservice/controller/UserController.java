@@ -56,7 +56,7 @@ public class UserController implements UserClient {
     public ResponseEntity<String> update(@RequestParam String password) {
         String result = userService.updatePassword(password);
         if ("success".equals(result)) {
-            return ResponseEntity.ok().body("Password was updated successfully");
+            return ResponseEntity.ok().body("Password has been updated successfully");
         } else {
             return ResponseEntity.badRequest().body(result);
         }
