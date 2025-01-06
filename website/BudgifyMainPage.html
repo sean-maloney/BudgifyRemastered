@@ -125,97 +125,96 @@
         </div>
 
         <script>
-            let subMenu = document.getElementById("subMenu");
 
-            function toggleMenu() {
-                subMenu.classList.toggle("open-menu");
-            }
+    let subMenu = document.getElementById("subMenu");
 
-                    // Function to handle search input and display dropdown
-        async function updateSearch() {
-            const query = document.getElementById("search").value.trim();
-            const dropdown = document.getElementById("search-dropdown");
+    function toggleMenu() {
+        subMenu.classList.toggle("open-menu");
+    }
 
-            if (!query) {
-                dropdown.style.display = "none";
-                dropdown.innerHTML = "";
-                return;
-            }
+//  Function to handle search input and display dropdown
+    async function updateSearch() {
+        const query = document.getElementById("search").value.trim();
+        const dropdown = document.getElementById("search-dropdown");
 
-            try {
-                const response = await fetch("http://localhost:8083/api/search", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams({ query: query }),
+        if (!query) {
+            dropdown.style.display = "none";
+            dropdown.innerHTML = "";
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:8083/api/search", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({ query: query }),
+            });
+
+            const results = await response.text();
+
+            // Assuming backend returns a comma-separated list of song names
+            const songs = results.split(",");
+            dropdown.innerHTML = "";
+
+            if (songs.length > 0) {
+                dropdown.style.display = "block";
+                songs.forEach((song) => {
+                    const item = document.createElement("div");
+                    item.classList.add("dropdown-item");
+                    item.textContent = song;
+                    item.onclick = function() {
+                        document.querySelector(".title").textContent = song; // Change title
+                        dropdown.style.display = "none"; // Close the dropdown
+                    };
+                    dropdown.appendChild(item);
                 });
-
-                const results = await response.text();
-
-                // Assuming backend returns a comma-separated list of song names
-                const songs = results.split(",");
-                dropdown.innerHTML = "";
-
-                if (songs.length > 0) {
-                    dropdown.style.display = "block";
-                    songs.forEach((song) => {
-                        const item = document.createElement("div");
-                        item.classList.add("dropdown-item");
-                        item.textContent = song;
-                        item.onclick = function() {
-                            document.querySelector(".title").textContent = song; // Change title
-                            dropdown.style.display = "none"; // Close the dropdown
-                        };
-                        dropdown.appendChild(item);
-                    });
-                } else {
-                    dropdown.style.display = "none";
-                }
-            } catch (error) {
-                console.error("Error fetching search results:", error);
+            } else {
+                dropdown.style.display = "none";
             }
-            async function deleteUserAccount() {
-    // Prompt user for username and password
-    const username = prompt("Enter your username to delete the account:");
-    if (!username) {
-        alert("Username is required.");
-        return;
-    }
-
-    const password = prompt("Enter your password:");
-    if (!password) {
-        alert("Password is required.");
-        return;
-    }
-
-    try {
-        // Send POST request to delete the user
-        const response = await fetch("http://localhost:8080/api/users/delete", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
-        });
-
-        // Check the response status
-        if (response.ok) {
-            const result = await response.json();
-            alert("Account deleted successfully. Goodbye!");
-            // Optionally redirect to a login or home page
-            window.location.href = "Login.html";
-        } else {
-            const error = await response.json();
-            alert(`Error: ${error.message || "Could not delete account."}`);
+        } catch (error) {
+            console.error("Error fetching search results:", error);
         }
-    } catch (err) {
-        console.error("Error during account deletion:", err);
-        alert("An error occurred. Please try again later.");
     }
-}
 
+    // Function to delete a user account
+    async function deleteUserAccount() {
+        const username = prompt("Enter your username to delete the account:");
+        if (!username) {
+            alert("Username is required.");
+            return;
         }
+
+        const password = prompt("Enter your password:");
+        if (!password) {
+            alert("Password is required.");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:8080/api/users/delete", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                alert("Account deleted successfully. Goodbye!");
+                window.location.href = "Login.html";
+            } else {
+                const error = await response.json();
+                alert(`Error: ${error.message || "Could not delete account."}`);
+            }
+        } catch (err) {
+            console.error("Error during account deletion:", err);
+            alert("An error occurred. Please try again later.");
+        }
+    }
+</script>
+
         </script>
     </section>
 </body>
