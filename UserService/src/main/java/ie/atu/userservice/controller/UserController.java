@@ -53,11 +53,13 @@ public class UserController implements UserClient {
     }
 
     @Override
-    public ResponseEntity<String> update(@RequestParam String password) {
-        String result = userService.updatePassword(password);
-        if ("success".equals(result)) {
-            return ResponseEntity.ok().body("Password has been updated successfully");
-        } else {
+    public ResponseEntity<String> update(@RequestParam String password, @RequestAttribute User user) {
+        String result = userService.updatePassword(user, password);
+
+        if ("Password updated successfully.".equals(result)) {
+            return ResponseEntity.ok().body("Password has been updated successfully.");
+        }
+        else {
             return ResponseEntity.badRequest().body(result);
         }
     }
