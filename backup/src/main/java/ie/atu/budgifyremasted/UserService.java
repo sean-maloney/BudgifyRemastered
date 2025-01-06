@@ -16,7 +16,7 @@ public class UserService {
     // Authenticate user credentials
     public boolean authenticate(String username, String password) {
         User user = userRepository.findByUsername(username);
-        return user != null && user.getPassword().equals(password);
+        return user != null && user.password.equals(password);
     }
 
     // Register a new user

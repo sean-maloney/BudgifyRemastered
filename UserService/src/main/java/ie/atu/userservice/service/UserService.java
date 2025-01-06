@@ -19,13 +19,13 @@ public class UserService {
     // Authenticate user credentials
     public boolean authenticate(String username, String password) {
         User user = userRepository.findByUsername(username);
-        return user != null && user.getPassword().equals(password);
+        return user != null && user.password.equals(password);
     }
 
     // Register a new user
     public String registerUser(User user) {
         // Check if username already exists
-        if (userRepository.existsByUsername(user.getUsername())) {
+        if (userRepository.existsByUsername(user.username)) {
             return "Username already exists.";
         }
 
@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public String updatePassword(User user, String newPassword) {
-        user.setPassword(newPassword);
+        user.password = newPassword;
         userRepository.save(user);
         return "Password updated successfully.";
     }

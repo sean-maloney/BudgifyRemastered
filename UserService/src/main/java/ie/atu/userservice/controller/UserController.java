@@ -12,10 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://127.0.0.1:8081")
+@CrossOrigin(origins = "http://127.0.0.1:8080")
+
 public class UserController implements UserClient {
-
-
+    
     @Autowired
     private UserService userService;
 
@@ -35,8 +35,7 @@ public class UserController implements UserClient {
         String result = userService.registerUser(user);
         if (result.equals("success")) {
             return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
-        }
-        else {
+        } else {
             return ResponseEntity.badRequest().body(result);  // Return the error message from UserService
         }
     }
